@@ -1,0 +1,20 @@
+
+spring:
+  datasource:
+    hikari:
+      password:
+      username:
+      driver-class-name:
+      jdbc-url:
+  application:
+    name: crawl-App
+
+
+
+shenjianconfig:
+  userKey : f6520e5b44-ZTBmNjhlMz   #用户名
+  userSecret : RmNjUyMGU1YjQ0ND-40c5a385c5e0f68 #秘钥
+  url: https://graphql.shenjian.io/   #url
+  sourceId :  #数据源ID
+    - 8811161
+    - 8820175

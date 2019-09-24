@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    /*
+       星哥爬虫Demo
+        支持原生JavaScript
+        开发教程：http://docs.shenjian.io/develop/crawler/doc/concept/crawler.html
+    */
+    //入口页
+    https://www.amazon.com/s?k=%E6%89%8B%E6%9C%BA&__mk_zh_CN=%E4%BA%9A%E9%A9%AC%E9%80%8A%E7%BD%91%E7%AB%99&ref=nb_sb_noss_2
+    // 内容
+    /https:\/\/www\.amazon\.com\/[^]\/dp\/B07KB3VTB5\/ref=sr_^[0-9]*$_^[0-9]*$_sspa?__mk_zh_CN=%E4%BA%9A%E9%A9%AC%E9%80%8A%E7%BD%91%E7%AB%99&keywords=Mobile+phone&qid=1568771138&s=gateway&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUFXUUxUODMzUkgwSzEmZW5jcnlwdGVkSWQ9QTA4MDQ3MzQyTkpVQzVGRUU5NEk2JmVuY3J5cHRlZEFkSWQ9QTA3MzQ0MDAzRVk1SVZMWThDTEo5JndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ==/
+
+    https://www.amazon.com/Huawei-Honor-Factory-Unlocked-Smartphone/dp/B07L14D7F7/ref=sr_1_2?__mk_zh_CN=%E4%BA%9A%E9%A9%AC%E9%80%8A%E7%BD%91%E7%AB%99&keywords=Mobile+phone&qid=1568771255&s=gateway&sr=8-2
+         //列表页
+    var keyword = "电视机";// @input(keyword,商品搜索关键字，爬取蘑菇街该关键字的搜索结果)
+    var encodeKey = encodeURIComponent(keyword);
+    https://www.amazon.cn/s?k=%E7%94%B5%E8%A7%86%E6%9C%BA&page=2&__mk_zh_CN=%E4%BA%9A%E9%A9%AC%E9%80%8A%E7%BD%91%E7%AB%99&qid=1568789445&ref=sr_pg_2
+    var Wkeyword = "亚马逊网站";// @input(keyword,商品搜索关键字，爬取蘑菇街该关键字的搜索结果)
+    var WencodeKey = encodeURIComponent(Wkeyword);
+    var configs = {
+        domains:  ["amazon.cn"],
+        scanUrls: ["https://www.amazon.cn/s?k="+encodeKey+"&__mk_zh_CN="+WencodeKey+"&ref=nb_sb_noss_2"],
+        http:\/\/doc\.ihoho\.top\/blog\/post\/admin\/Spring-Boot-Thymeleaf
+        contentUrlRegexes: [/https:\/\/www\.amazon\.cn\/dp\/B06X9CRSD3\/ref=sr_\d_\d\?__mk_zh_CN=%E4%BA%9A%E9%A9%AC%E9%80%8A%E7%BD%91%E7%AB%99&keywords=%E7%94%B5%E8%A7%86%E6%9C%BA&qid=*&sr=\d-\d/], //内容页url正则
+        helperUrlRegexes: [/https:\/\/www.amazon.cn\/s\?k=%E7%94%B5%E8%A7%86%E6%9C%BA&page=\d&__mk_zh_CN=%E4%BA%9A%E9%A9%AC%E9%80%8A%E7%BD%91%E7%AB%99&qid=*&ref=sr_pg_\d/], //列表页url正则 可留空
+        //增强版
+        fields: [
+            {
+                // 抽取内容页的文章标题。默认抽取方式是xpath，也支持json和正则
+                name: "skuTitle",
+                selector: "//*[@id='productTitle']",
+                required: true  // required为true表示该项数据不能为空
+            }
+
+        ]
+
+
+    };
+
+    var crawler = new Crawler(configs);
+    crawler.start();
+
+
+</script>
+</body>
+</html>
